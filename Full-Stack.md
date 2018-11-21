@@ -31,7 +31,7 @@ $ curl -s https://raw.githubusercontent.com/citb33/project-documentation/master/
 $ sudo mysql < /tmp/student-application.sql
 ```
 
-#### Step 2 : Application Server Setup
+#### Step 3 : Application Server Setup
 
 Choose one server for application setup and login to it and execute the following commands.
 
@@ -67,6 +67,50 @@ You just now setup your application inside server and in order to access it from
 ```
 $ /home/student/apache-tomcat-9.0.13/bin/startup.sh
 ```
+To start the tomcat automatically during reboot then run these as `centos` user
+
+```
+$ sudo wget https://raw.githubusercontent.com/citb33/project-documentation/master/tomcat-init-script -O /etc/init.d/tomcat 
+$ sudo chmod +x /etc/init.d/tomcat 
+$ sudo systemctl enable tomcat
+$ sudo systemctl start tomcat
+```
+
+#### Step 3 : Web Server Setup
+
+Choose one server for web service setup and login to it and execute the following commands.
+
+```
+$ sudo yum install httpd -y
+$ sudo systemctl enable httpd 
+```
+
+Create the following files with the content shown.
+
+```
+# cat /var/www/html/index.html
+<h1 style="text-align: center;"><strong>Welcome to Student Application</strong></h1>
+<h1 style="text-align: center;"><strong>ON</strong></h1>
+<p><strong><img style="display: block; margin-left: auto; margin-right: auto;" src="https://cdn-images-1.medium.com/max/1200/1*tFl-8wQUENETYLjX5mYWuA.png" alt="Image result for aws" width="478" height="251" /></strong></p>
+<p style="text-align: center;"><a href="http://18.216.33.27/studentapp"><strong>Click here for application</strong></a></p>
+```
+
+##### Note: IP Address `18.216.33.27` is my public IP of web server
+
+```
+# cat /etc/httpd/conf.d/tomcat.conf 
+ProxyPass "/studentapp"  "http://172.31.33.148:8080/studentapp"
+ProxyPassReverse "/studentapp"  "http://172.31.33.148:8080/studentapp"
+```
+##### Note: IP Address `172.31.33.148` is my private IP of app server
+
+```
+# systemctl start httpd
+# systemctl enable httpd
+```
+
+
+
 
 
 
