@@ -5,7 +5,7 @@
 # chkconfig: 234 20 80  
 #
 
-TOMCAT_USER=studentapp
+TOMCAT_USER=student
 TOMCAT_DIR=$(ls -d /home/$TOMCAT_USER/apache*)
 STARTUP=$TOMCAT_DIR/bin/startup.sh
 SHUTDOWN=$TOMCAT_DIR/bin/shutdown.sh
@@ -16,7 +16,7 @@ start() {
     echo "Tomcat already started"
     exit 
   fi 
-  su - studentapp -c "nohup $STARTUP" 
+  su - $TOMCAT_USER -c "nohup $STARTUP" 
 }
 
 stop() {
@@ -25,7 +25,7 @@ stop() {
     echo "Tomcat not started"
     exit 
   fi 
-  su - studentapp -c "nohup $SHUTDOWN"
+  su - $TOMCAT_USER -c "nohup $SHUTDOWN"
   SLEEP=5
   while [ $SLEEP -lt 60 ]; do 
     sleep 5
