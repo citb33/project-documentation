@@ -89,10 +89,12 @@ Create the following files with the content shown.
 
 ```
 # cat /var/www/html/index.html
-<h1 style="text-align: center;"><strong>Welcome to Student Application</strong></h1>
-<h1 style="text-align: center;"><strong>ON</strong></h1>
-<p><strong><img style="display: block; margin-left: auto; margin-right: auto;" src="https://cdn-images-1.medium.com/max/1200/1*tFl-8wQUENETYLjX5mYWuA.png" alt="Image result for aws" width="478" height="251" /></strong></p>
-<p style="text-align: center;"><a href="http://18.216.33.27/studentapp"><strong>Click here for application</strong></a></p>
+<h1 style="text-align: center;"><span style="color: #ff0000;">Welcome to Student Application on AWS.</span></h1>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="https://cdn-images-1.medium.com/max/2000/1*tFl-8wQUENETYLjX5mYWuA.png" alt="" width="1200" height="630" /></p>
+<p>&nbsp;</p>
+<h2 style="text-align: center;"><a href="student"><strong>Enter to Student Application</strong></a></h2>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 ```
 
 ##### Note: IP Address `18.216.33.27` is my public IP of web server
